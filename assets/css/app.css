@@ -1,6 +1,20 @@
 /* Home View
 -----------------------------------------------------------------------------*/
 
-.view.home-view .home-view-content {
+.view.home-view .home-view-content, .view.list-view .list-view-content, .view.add-view .add-view-content {
 	padding: 12px;
+}
+
+input[type=text]{
+    display: block;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid grey;
+}
+
+.button.warning {
+    background: #FF4136;
+    color: #FFF;
+    text-shadow: 0px 1px 0px #85144b;
 }

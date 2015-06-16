@@ -51,7 +51,7 @@
 <script type="text/javascript">
 
 	window.addEvent('ready', function() {
-		new Moobile.WindowController().setRootViewController(new ViewController.Home /* Put your root view controller here */);
+		new Moobile.WindowController().setRootViewController(viewControllerStack);
 	});
 
 </script>
