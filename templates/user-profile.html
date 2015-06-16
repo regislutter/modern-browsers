@@ -1,0 +1,67 @@
+<script type="application/javascript">
+    var profileProto = Object.create(HTMLElement.prototype);
+    profileProto.createdCallback = function() {
+        // Create Shadow Root
+        var shadow = this.createShadowRoot();
+
+        // Create the profile container
+        var profileContainer = document.createElement('div');
+        profileContainer.className = 'profile';
+        if(this.getAttribute('data-background-color') != undefined){
+            profileContainer.style.backgroundColor = this.getAttribute('data-background-color');
+        }
+        if(this.getAttribute('data-border-width') != undefined){
+            profileContainer.style.borderWidth = this.getAttribute('data-border-width');
+        }
+        if(this.getAttribute('data-border-color') != undefined){
+            profileContainer.style.borderColor = this.getAttribute('data-border-color');
+        }
+
+        // Create the image container
+        var imgContainer = document.createElement('div');
+        if(this.getAttribute('data-avatar-format') != 'square'){
+            imgContainer.className = 'picture round';
+        }else{
+            imgContainer.className = 'picture';
+        }
+        if(this.getAttribute('data-avatar') != undefined){
+            imgContainer.style.backgroundImage = 'url("' + this.getAttribute('data-avatar') + '")';
+        }
+        if(this.getAttribute('data-avatar-border-width') != undefined){
+            imgContainer.style.borderWidth = this.getAttribute('data-avatar-border-width');
+        }
+        if(this.getAttribute('data-avatar-border-color') != undefined){
+            imgContainer.style.borderColor = this.getAttribute('data-avatar-border-color');
+        }
+        // Add image to container
+        profileContainer.appendChild(imgContainer);
+
+        // Create user data
+        var strUsername = (this.getAttribute('data-user-name') != undefined) ? this.getAttribute('data-user-name') : 'Unknown user name';
+        var username = document.createElement('p');
+        username.className = 'username';
+        username.innerHTML = strUsername;
+        profileContainer.appendChild(username);
+
+        var usertitle = document.createElement('p');
+        usertitle.className = 'usertitle';
+        usertitle.innerHTML = (this.getAttribute('data-user-title') != undefined) ? this.getAttribute('data-user-title') : 'Unknown user title';
+        profileContainer.appendChild(usertitle);
+
+        if(this.getAttribute('data-user-email') != undefined){
+            var useremail = document.createElement('a');
+            useremail.className = 'useremail';
+            useremail.title = strUsername;
+            useremail.innerHTML = this.getAttribute('data-user-email');
+            useremail.setAttribute('href', 'mailto:'+this.getAttribute('data-user-email'));
+            profileContainer.appendChild(useremail);
+        }
+
+        // Add container to Shadow Root
+        shadow.appendChild(profileContainer);
+    };
+
+    var userProfile = document.registerElement('user-profile', {
+        prototype: profileProto
+    });
+</script>
