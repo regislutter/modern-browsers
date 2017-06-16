@@ -1,0 +1,42 @@
+body {
+  padding: 0;
+  margin: 0;
+  color: #FFF;
+  font-family: HelveticaNeue, serif;
+  font-weight: 200;
+  font-style: italic;
+  text-align: center; }
+
+header > nav {
+  display: block;
+  width: 100%;
+  background: #46A9CD; }
+  header > nav > ul {
+    margin: 0; }
+    header > nav > ul > li {
+      display: inline-block;
+      list-style-type: none; }
+      header > nav > ul > li a {
+        display: block;
+        padding: 10px 15px;
+        color: #FFF;
+        text-decoration: none; }
+        header > nav > ul > li a:hover {
+          background: #2a7e9c; }
+
+/* ------------ **
+* START EXERCISE *
+** ------------ */
+.flex-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start; }
+  .flex-container > article {
+    background: #46A9CD; }
+    .flex-container > article:nth-child(3n+2) {
+      background: #308eb0; }
+    .flex-container > article:nth-child(3n+3) {
+      background: #6ebcd8; }

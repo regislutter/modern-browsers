@@ -15,3 +15,15 @@ gulp.task('style', function() {
         }))
         .pipe(gulp.dest('assets/css')); //config.dest
 });
+
+gulp.task('start', function() {
+    return gulp.src('assets/scss/start.scss') //config.mainSrc
+        .pipe(sass() //config.settings
+            .on('error', console.error.bind(console))
+        )
+        .pipe(autoprefixer({
+            browsers: ['> 1%', 'last 2 version'],
+            cascade: false
+        }))
+        .pipe(gulp.dest('assets/css')); //config.dest
+});

@@ -6,22 +6,32 @@ $purple: #BD61C9;
 body {
   padding: 0;
   margin: 0;
+
+  color: #FFF;
+  font-family: HelveticaNeue, serif;
+  font-weight: 200;
+  font-style: italic;
+  text-align: center;
 }
 
 header > nav {
   display: block;
   width: 100%;
   background: $blue;
+
   > ul {
     margin: 0;
+
     > li {
       display: inline-block;
       list-style-type: none;
+
       a {
         display: block;
         padding: 10px 15px;
         color: #FFF;
         text-decoration: none;
+
         &:hover {
           background: darken($blue, 15);
         }
@@ -30,100 +40,79 @@ header > nav {
   }
 }
 
+/* ------------ **
+* START EXERCISE *
+** ------------ */
+
+// Flexbox container
 .flex-container {
   display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  align-items: stretch;
-  align-content: stretch;
-}
+  flex-flow: row wrap; // Break lines automatically
+  align-items: stretch; // Equal height for columns in rows
 
-.flex-container > article {
-  min-height: 150px;
-  width: 100%;
-  margin: auto;
-  flex: 1 0 auto;
-  background: $blue;
-  color: white;
-  font-family: Times, serif;
-  font-weight: 200;
-  font-style: italic;
-  text-align: center;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-  &:nth-child(2){
-    background: darken($blue, 10);
-  }
-  &:nth-child(3){
-    background: lighten($blue, 15);
-  }
-  &:nth-child(4){
-    background: $green;
-  }
-  &:nth-child(5){
-    background: lighten($green, 15);
-  }
-  &:nth-child(6){
-    background: $yellow;
-  }
-  &:nth-child(7){
-    background: lighten($purple, 15);
-  }
-  &:nth-child(8){
-    background: $purple;
-  }
-}
+  > article {
+    display: flex;
 
-@media all and (min-width: 600px) {
-  .flex-container > article {
-    width: 33%;
-    float: left; // Fallback IE 8
-    &.w50 {
-      width: 50%;
+    &:nth-child(3n+2) {
+      background: darken($blue, 10);
     }
-    &.w100 {
-      width: 100%;
+    &:nth-child(3n+3) {
+      background: lighten($blue, 10);
     }
-  }
-}
 
-user-profile {
-  display: inline-block;
-}
-user-profile::shadow{
-  .profile {
-    display: inline-block;
-    width: 350px;
-    padding: 15px;
-    margin: 10px;
-    border-radius: 15px;
-    border: 2px solid black;
+    width: 100%; // Take full width by default (mobile first)
+    flex: 1 0 auto; // Allow columns to resize
+    justify-content: center; // Center content
+    flex-direction: column; // List paragraphs in the columns
+
+    padding: 20px 0; // Padding of 20px in boxes - 1/2
+    min-height: 150px; // Minimla height of 150px
+
+    background: $blue;
 
     p {
-      margin: 0;
-      &.username {
-        font-size: 1.2rem;
-        font-weight: 600;
-      }
-      &.usertitle {
-        margin-bottom: 15px;
+      padding: 0 20px; // Padding of 20px in boxes - 2/2
+
+      + p {
+        margin-top: 10px; // Paragraph distanced by 10px : use +
       }
     }
+  }
+}
 
-    .picture {
-      float: left;
-      margin-right: 15px;
-      width: 100px;
-      height: 100px;
-      background: #212121 url('') no-repeat center center;
-      background-size: cover;
-      border: 2px solid $blue;
+@media all and (min-width: 768px) { // Over 768px, width of 33%
+  .flex-container > article {
+    width: 33%; // 33% for default width
 
-      &.round {
-        border-radius: 50%;
-        overflow: hidden;
-      }
+    &.w50 {
+      width: 50%; // columns of 50% width
     }
+    &.w100 {
+      width: 100%; // columns full width
+    }
+  }
+}
+
+@media all and (min-width: 600px) and (max-width: 767px) { // Between 600px and 767px, width of 50%
+  .flex-container > article {
+    width: 50%; // 50% for default width
+
+    &.w100 {
+      width: 100%; // columns full width
+    }
+  }
+}
+
+// All articles after the one of 100% must have the moebius triangle (32x32px) in the top right (10px from border) : use ~ and :before
+.w100 ~ article {
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    width: 32px; height: 32px;
+    top: 10px; right: 10px;
+    background-image: url('../images/moebius-triangle.svg');
+    background-size: contain;
   }
 }

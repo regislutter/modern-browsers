@@ -1,0 +1,63 @@
+$blue: #46A9CD;
+$green: #6DA96C;
+$yellow: #CAB463;
+$purple: #BD61C9;
+
+body {
+    padding: 0;
+    margin: 0;
+
+    color: #FFF;
+    font-family: HelveticaNeue, serif;
+    font-weight: 200;
+    font-style: italic;
+    text-align: center;
+}
+
+// Header navigation
+header > nav {
+    display: block;
+    width: 100%;
+    background: $blue;
+
+    > ul {
+        margin: 0;
+
+        > li {
+            display: inline-block;
+            list-style-type: none;
+
+            a {
+                display: block;
+                padding: 10px 15px;
+                color: #FFF;
+                text-decoration: none;
+
+                &:hover {
+                    background: darken($blue, 15);
+                }
+            }
+        }
+    }
+}
+
+/* ------------ **
+* START EXERCISE *
+** ------------ */
+
+// Flexbox container
+.flex-container {
+    display: flex;
+    align-items: flex-start;
+
+    > article {
+        background: $blue;
+
+        &:nth-child(3n+2) {
+            background: darken($blue, 10);
+        }
+        &:nth-child(3n+3) {
+            background: lighten($blue, 10);
+        }
+    }
+}
